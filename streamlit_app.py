@@ -8,8 +8,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        'Get Help': 'mailto:tomi.toivio@helsinki.fi',
-        'Report a bug': "mailto:tomi.toivio@helsinki.fi",
+        'Get Help': 'https://github.com/TomiToivio/laclaugpt-dashboard-development',
+        'Report a bug': "https://github.com/TomiToivio/laclaugpt-dashboard-development/issues",
         'About': "LaclauGPT by Tomi Toivio."
     }
 )
