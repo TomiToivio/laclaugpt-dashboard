@@ -18,14 +18,15 @@ df = load_data()
 st.title("LaclauGPT - Social Media Video Analysis")
 st.subheader("Analyze and visualize social media video data with LaclauGPT")
 
+# Force status_date to datetime
+if not pd.api.types.is_datetime64_any_dtype(df['status_date']):
+    df['status_date'] = pd.to_datetime(df['status_date'], errors='coerce')
+
 search_query = st.sidebar.text_input("Search:")
 
 start_date = st.sidebar.date_input("Start date", value=df["status_date"].min())
 end_date = st.sidebar.date_input("End date", value=df["status_date"].max())
 
-# COnvert 'status_date' to datetime if not already
-if not pd.api.types.is_datetime64_any_dtype(df['status_date']):
-    df['status_date'] = pd.to_datetime(df['status_date'], errors='coerce')
 
 filtered_df = df.copy()
 
@@ -44,10 +45,54 @@ st.write(f"Viewing {filtered_count} out of {total_count} statuses.")
 tab1, tab2, tab3 = st.tabs(["Sentiments", "Topics", "Entities"])
 with tab1:
     st.header("Sentiment Analysis")
+    positive_series = filtered_df["positive_sentiments"].dropna().str.split(", ").explode()
+    negative_series = filtered_df["negative_sentiments"].dropna().str.split(", ").explode()
+    neutral_series = filtered_df["neutral_sentiments"].dropna().str.split(", ").explode()
+    #positive_daily_counts = filtered_df.groupby(["status_date", "positive_sentiments"]).size().unstack(fill_value=0)
+    #negative_daily_counts = filtered_df.groupby(["status_date", "negative_sentiments"]).size().unstack(fill_value=0)
+    #neutral_daily_counts = filtered_df.groupby(["status_date", "neutral_sentiments"]).size().unstack(fill_value=0)
+    #chart_data = pd.DataFrame({
+    #    "Positive": positive_daily_counts.sum(axis=1),
+    #    "Negative": negative_daily_counts.sum(axis=1),
+    #    "Neutral": neutral_daily_counts.sum(axis=1)
+    #})
+    # Plot daily positive, negative, and neutral sentiment counts
+    #st.line_chart(chart_data)
+    top_positive = positive_series.value_counts().head(20)
+    top_negative = negative_series.value_counts().head(20)
+    top_neutral = neutral_series.value_counts().head(20)
+    # Positive chart
+    st.subheader("Top Positive Sentiments")
+    st.bar_chart(top_positive)
+    # Negative chart
+    st.subheader("Top Negative Sentiments")
+    st.bar_chart(top_negative)
+    #sentiment_df = pd.DataFrame({
+    #    "Positive": top_positive,
+    #    "Negative": top_negative,
+    #    "Neutral": top_neutral
+    #}).fillna(0).astype(int)
+    #sentiment_df = sentiment_df.sort_values(by=["Positive", "Negative", "Neutral"], ascending=False)
+    #st.dataframe(sentiment_df)
+
+
 with tab2:
     st.header("Topic Modeling")
+    topics_series = filtered_df["political_topics"].dropna().str.split(", ").explode()
+    top_topics = topics_series.value_counts().head(20)
+    st.subheader("Top Political Topics")
+    st.bar_chart(top_topics)
+    #topic_df = pd.DataFrame([{"topic": topic, "count": count} for topic, count in top_topics.items()])
+    #topic_df = topic_df.sort_values(by="count", ascending=False)
+
 with tab3:
     st.header("Entity Recognition")
+    entities_series = filtered_df["political_entities"].dropna().str.split(", ").explode()
+    top_entities = entities_series.value_counts().head(20)
+    #entity_df = pd.DataFrame([{"entity": entity, "count": count} for entity, count in top_entities.items()])
+    #entity_df = entity_df.sort_values(by="count", ascending=False)
+    st.subheader("Top Political Entities")
+    st.bar_chart(top_entities)
 
 
 st.caption("LaclauGPT - Social Media Video Analysis")
