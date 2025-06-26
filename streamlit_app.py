@@ -27,7 +27,6 @@ search_query = st.sidebar.text_input("Search:")
 start_date = st.sidebar.date_input("Start date", value=df["status_date"].min())
 end_date = st.sidebar.date_input("End date", value=df["status_date"].max())
 
-
 filtered_df = df.copy()
 
 filtered_df = filtered_df[(filtered_df["status_date"] >= pd.to_datetime(start_date)) & (filtered_df["status_date"] <= pd.to_datetime(end_date))]
@@ -40,7 +39,6 @@ st.dataframe(filtered_df)
 total_count = len(df)
 filtered_count = len(filtered_df)
 st.write(f"Viewing {filtered_count} out of {total_count} statuses.")
-
 
 tab1, tab2, tab3 = st.tabs(["Sentiments", "Topics", "Entities"])
 with tab1:
@@ -93,6 +91,12 @@ with tab3:
     #entity_df = entity_df.sort_values(by="count", ascending=False)
     st.subheader("Top Political Entities")
     st.bar_chart(top_entities)
+    # Get a count of each unique entity
+    entity_counts = entities_series.value_counts()
+    # Show all entities with their counts
+    entity_counts_df = pd.DataFrame(entity_counts).reset_index()
+    entity_counts_df.columns = ["Entity", "Count"]
+    st.dataframe(entity_counts_df)
 
 
 st.caption("LaclauGPT - Social Media Video Analysis")
