@@ -3,8 +3,8 @@ import pandas as pd
 
 
 st.set_page_config(page_title="LaclauGPT - Social Media Video Analysis",page_icon=":alien:",layout="wide",initial_sidebar_state="expanded",menu_items={
-        'Get Help': 'https://github.com/TomiToivio/laclaugpt-dashboard-development',
-        'Report a bug': "https://github.com/TomiToivio/laclaugpt-dashboard-development/issues",
+        'Get Help': 'https://github.com/TomiToivio/laclaugpt-dashboard',
+        'Report a bug': "https://github.com/TomiToivio/laclaugpt-dashboard/issues",
         'About': "Developed by Tomi Toivio, University of Helsinki."
     })
 # Load data
