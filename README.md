@@ -1,26 +1,29 @@
 # LaclauGPT demo dashboard with dummy data
 
-This is a demo dashboard with dummy data for LaclauGPT data collection and analysis pipeline.
+This is a demo dashboard with dummy data. This is a visualization tool for the LaclauGPT data collection and analysis pipeline.
 
 ## LaclauGPT
 
-LaclauGPT is a data collection and analysis pipeline. Developed for a political science project analyzing European parliament elections. It is called LaclauGPT as a tribute to [Ernesto Laclau](https://en.wikipedia.org/wiki/Ernesto_Laclau).
+LaclauGPT is a political science multimodal data collection and analysis pipeline. It is called LaclauGPT as a tribute to [Ernesto Laclau](https://en.wikipedia.org/wiki/Ernesto_Laclau).
 
-Developed by [Tomi Toivio](mailto:tomi.toivio@helsinki.fi) in the [Helsinki Institute for Social Sciences and Humanities](https://www.helsinki.fi/en/helsinki-institute-social-sciences-and-humanities).
+LaclauGPT is developed by [Tomi Toivio](mailto:tomi.toivio@helsinki.fi) in the [Helsinki Institute for Social Sciences and Humanities](https://www.helsinki.fi/en/helsinki-institute-social-sciences-and-humanities).
+
+The pipeline was developed for three research projects funded by the European Union:
+* [CO3](https://www.co3socialcontract.eu/) researches the social contract. 
+* [ENDURE](https://www.endure-project.org/​) researches the world after the pandemic. 
+* [PLEDGE](https://www.pledgeproject.eu/​) researches grievance politics.
+
+The pipeline was used to collect and analyze multimodal social media data related to the [2024 European parliament elections](https://en.wikipedia.org/wiki/2024_European_Parliament_election). Data was collected from TikTok and Instagram. Data collection started in 1st of May 2024 and continued until the election day in 9th of June 2024. Collection was based on usernames of official election candidates as well as hashtags and search queries related to the elections. Election data was collected for Bulgaria, Croatia, Finland, France, Germany, Hungary, Portugal, Spain and Sweden. Collected and analyzed data cannot be released yet due to GDPR. This open source version uses dummy data. 
 
 ## Pipeline Components
 
 ### Core Components
 
-Core components are required for every data collection and analysis project.
+These are the components which can be customized for other research projects.
 
 #### Data Collection
 
 Data collection tools such as a JavaScript TikTok scraper with a Node.js REST API backend. TikTok scraper will be published as open source.
-
-#### Data Storage
-
-Data storage using [CSC Allas](https://docs.csc.fi/data/Allas/) and [CSC Kaivos](https://docs.csc.fi/data/kaivos/overview/).
 
 #### Data Analysis
 
@@ -32,9 +35,9 @@ Data visualization with Streamlit. Actual data cannot be published due to GDPR. 
 
 ### Experimental Components
 
-Experimental components are still being developed and tested.
+These components are experimental and mostly developed for research purposes. No really required for similar projects.
 
-#### LaclauGPT 
+#### LaclauGPT Chatbot
 
-LaclauGPT is an [Ollama](https://ollama.com) chatbot which uses vector and graph databases to answer questions about the dataset. Also functions as an agent and has data collection tools for collection of additional data. Pure Python without Langchain.
+LaclauGPT is an [Ollama](https://ollama.com) chatbot which uses vector and graph databases to answer questions about the dataset. Also functions as an agent and has data collection tools for collection of additional data. Pure Python without Langchain. This is currently purely experimental.
 
