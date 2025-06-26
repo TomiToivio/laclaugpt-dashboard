@@ -72,6 +72,14 @@ with tab1:
     #}).fillna(0).astype(int)
     #sentiment_df = sentiment_df.sort_values(by=["Positive", "Negative", "Neutral"], ascending=False)
     #st.dataframe(sentiment_df)
+    # Get a count of each unique sentiment and combine them into a single DataFrame
+    sentiment_counts = pd.concat([positive_series, negative_series, neutral_series]).value_counts()
+    # Also count negative, positive, and neutral sentiment for each sentiment    
+    # Show all sentiments with their counts
+    sentiment_counts_df = pd.DataFrame(sentiment_counts).reset_index()
+    sentiment_counts_df.columns = ["Sentiment", "Count"]
+    sentiment_counts_df = sentiment_counts_df.sort_values(by="Count", ascending=False)
+    st.dataframe(sentiment_counts_df)
 
 
 with tab2:
@@ -82,6 +90,12 @@ with tab2:
     st.bar_chart(top_topics)
     #topic_df = pd.DataFrame([{"topic": topic, "count": count} for topic, count in top_topics.items()])
     #topic_df = topic_df.sort_values(by="count", ascending=False)
+    # Get a count of each unique topic
+    topic_counts = topics_series.value_counts()
+    # Show all topics with their counts
+    topic_counts_df = pd.DataFrame(topic_counts).reset_index()
+    topic_counts_df.columns = ["Topic", "Count"]
+    st.dataframe(topic_counts_df)
 
 with tab3:
     st.header("Entity Recognition")
