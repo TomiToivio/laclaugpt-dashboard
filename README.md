@@ -31,3 +31,6 @@ The pipeline was used to collect and analyze multimodal social media data relate
 
 [LaclauGPT](https://github.com/TomiToivio/LaclauGPT) is an [Ollama](https://ollama.com) chatbot which uses vector and graph databases to answer questions about the dataset. Also functions as an agent and has data collection tools for collection of additional data. Pure Python without Langchain. This is currently purely experimental. 
 
+# CO3
+
+This project has been developed for the [CO3](https://www.co3socialcontract.eu/) project. This project has received funding from the EU's Horizon Europe research and innovation programme under Grant Agreement 101132631. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the Agency. Neither the European Union nor the granting authority can be held responsible for them.
